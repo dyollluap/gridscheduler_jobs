@@ -1,0 +1,43 @@
+#!/bin/bash
+#
+# set the name of the job; this will appear in the job listing
+#$ -N fastqdump_46
+#
+
+#
+# set the maximum memory usage (per slot)
+#$ -l h_vmem=3G
+#
+# on other clusters this memory resource may have a different name
+
+#
+# set the number of slots, replace '1' with a larger number if needed
+# set the maximum run time, hh:mm:ss, 
+#$ -l h_rt=3:00:00
+#
+
+#
+# send mail when job ends or aborts
+#$ -m ea
+#
+# specify an email address
+#$ -M plloyd@stanford.edu
+#
+
+# check for errors in the job submission options
+#$ -w e
+#
+
+# pass the current environment variables
+#$ -V
+#
+
+# join the stdout and stderr streams into one file
+#$ -j y
+#
+
+# choose working directory
+#$ -wd /srv/gs1/projects/cherry/paul/transcriptome/jgi/
+
+module load ncbi_sra_sdk/2.1.16
+fastq-dump --split-3 SRR488146.sra
